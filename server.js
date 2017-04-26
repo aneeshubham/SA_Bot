@@ -59,12 +59,14 @@ app.post('/inputmsg',function(request,response){
 		responseObject = JSON.parse(body);
 		//response.json(responseObject);
         //console.log(" Object : " + body);
-        console.log(" Attribute : " + (request.body.result.parameters.attribute));
-		console.log(" Value : " + responseObject.items[0]['Id']); //VAR APNAvAR = "Id";   //responseObject.items[0][apnavar]
-		var answer = responseObject.items[0][request.body.result.parameters.attribute];
-		console.log(" Value : " + answer);
-		if(answer){
-				var speech = "Your answer is "+ answer+".";
+                console.log(" Attribute : " + (request.body.result.parameters.attribute));
+	        //console.log(" Value : " + responseObject.items[0]['Id']); //VAR APNAvAR = "Id";   //responseObject.items[0][apnavar]
+		
+		
+		if(request.body.result.parameters.attribute){
+			var answer = responseObject.items[0][request.body.result.parameters.attribute];
+			console.log(" Value : " + answer);
+			var speech = "Your answer is "+ answer+".";
 		}
 		else{
 				var speech = "Couldnt find your answer";
