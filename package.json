@@ -2,17 +2,14 @@
 {
   "name": "poc4",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a chatbot",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "goku",
-  "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "request": "^2.76.0"
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
   }
 }
