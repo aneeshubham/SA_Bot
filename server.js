@@ -69,7 +69,7 @@ app.post('/inputmsg',function(request,response){
 		else{
 				var speech = "Couldnt find your answer";
 		}				     
-		return res.json({
+		return response.json({
 			speech: speech,
 			displayText: speech,
 			source: 'poc4'
@@ -95,7 +95,7 @@ app.post('/inputmsg',function(request,response){
 		console.log(error);
 	});
 	
-	request.end();
+	//request.end();
 	
 });
 
