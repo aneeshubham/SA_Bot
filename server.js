@@ -1,11 +1,11 @@
-var http = require('http');
-var fs = require('fs'),
-express = require('express'),
+const http = require('http');
+const fs = require('fs'),
+const express = require('express');
 path = require('path');
 
-var app = express();
+const app = express();
 
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
