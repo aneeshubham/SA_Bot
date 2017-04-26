@@ -8,6 +8,7 @@
     "start": "node server.js"
   },
   "author": "goku",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
