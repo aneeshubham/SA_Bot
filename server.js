@@ -1,16 +1,16 @@
-const http = require('http');
-const fs = require('fs'),
-const express = require('express');
+var http = require('http');
+var fs = require('fs'),
+express = require('express'),
 path = require('path');
 
-const app = express();
+var app = express();
 
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.get('/', onRequest);
-app.use(express.static(path.join(__dirname, 'public')));
+// app.get('/', onRequest);
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // function onRequest(request, response){
   // express.static(path.join(__dirname, 'public'));
@@ -59,9 +59,9 @@ app.post('/inputmsg',function(request,response){
 		responseObject = JSON.parse(body);
 		//response.json(responseObject);
         //console.log(" Object : " + body);
-        console.log(" Attribute : " + (request.body.result.parameters.attribute);
+        console.log(" Attribute : " + (request.body.result.parameters.attribute));
 		console.log(" Value : " + responseObject.items[0]['Id']); //VAR APNAvAR = "Id";   //responseObject.items[0][apnavar]
-		var answer = responseObject.items[0][(request.body.result.parameters.attribute];
+		var answer = responseObject.items[0][request.body.result.parameters.attribute];
 		if(answer){
 				var speech = "Your answer is "+ answer+".";
 		}
