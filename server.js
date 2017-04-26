@@ -48,13 +48,13 @@ app.post('/inputmsg',function(request,response){
 		}   
 	};
 	var responseObject;
-	var r = https.get(options, function(response){
+	var r = https.get(options, function(res){
 	var body = "";
 
-	response.on('data', function(data) {
+	res.on('data', function(data) {
 		body += data;
 	});
-	response.on('end', function() {
+	res.on('end', function() {
 		
 		responseObject = JSON.parse(body);
 		//response.json(responseObject);
@@ -62,13 +62,14 @@ app.post('/inputmsg',function(request,response){
         console.log(" Attribute : " + (request.body.result.parameters.attribute));
 		console.log(" Value : " + responseObject.items[0]['Id']); //VAR APNAvAR = "Id";   //responseObject.items[0][apnavar]
 		var answer = responseObject.items[0][request.body.result.parameters.attribute];
+		console.log(" Value : " + answer);
 		if(answer){
 				var speech = "Your answer is "+ answer+".";
 		}
 		else{
 				var speech = "Couldnt find your answer";
 		}				     
-		return response.json({
+		return res.json({
 			speech: speech,
 			displayText: speech,
 			source: 'poc4'
