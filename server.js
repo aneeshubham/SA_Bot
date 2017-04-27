@@ -54,8 +54,29 @@ app.post('/inputmsg',function(request,response){
 			console.log(" Value : " + answer);
 			if(request.body.result.parameters.attribute=="AssignedTo_SA2_c")
 			{
-				var speech = "The task "+recordNameURL+"is assigned to"+ answer+".";
+				var speech = "The task "+recordNameURL+" is assigned to "+ answer+".";
 			}
+			else if(request.body.result.parameters.attribute=="Status_SA_c")
+			{
+				var speech = "The status of "+recordNameURL+" is "+ answer+".";
+			}
+			else if(request.body.result.parameters.attribute=="Type_c")
+			{
+				var speech = "The type of "recordNameURL+" is "+ answer+".";
+			}
+			else if(request.body.result.parameters.attribute=="Id")
+			{
+				var speech = "The Id of "+recordNameURL+" is "+ answer+".";
+			}
+			else if(request.body.result.parameters.attribute=="CreatedBy")
+			{
+				var speech = "This "+recordNameURL+" is  created by "+ answer+".";
+			}
+			else if(request.body.result.parameters.attribute=="EmailAddress_c")
+			{
+				var speech = answer+" is associated to "+recordNameURL;
+			}
+			
 			else
 			{
 				var speech = "Your answer is "+ answer+".";
