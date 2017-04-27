@@ -62,7 +62,7 @@ app.post('/inputmsg',function(request,response){
 			}
 			else if(request.body.result.parameters.attribute=="Type_c")
 			{
-				var speech = "The type of "recordNameURL+" is "+ answer+".";
+				var speech = "The type of "+recordNameURL+" is "+ answer+".";
 			}
 			else if(request.body.result.parameters.attribute=="Id")
 			{
