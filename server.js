@@ -76,7 +76,18 @@ app.post('/inputmsg',function(request,response){
 			{
 				var speech = answer+" is associated to "+recordNameURL;
 			}
-			
+			else if(request.body.result.parameters.attribute=="CreationDate")
+			{
+				var speech = recordNameURL+" was created on "+answer;
+			}
+			else if(request.body.result.parameters.attribute=="LastUpdateDate")
+			{
+				var speech = recordNameURL+" was last updated on "+answer;
+			}
+			else if(request.body.result.parameters.attribute=="LastUpdatedBy")
+			{
+				var speech = recordNameURL+" was recently updated by "+answer;
+			}
 			else
 			{
 				var speech = "Your answer is "+ answer+".";
