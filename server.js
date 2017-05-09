@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 var varAuth = 'Basic YWthc2hkZWVwOmxudExOVDJLMTZfMQ==';
 var varHost = 'acs.crm.ap2.oraclecloud.com';
-var varPath = '/salesApi/resources/latest/Task_SA_c';
+var varPath = '/salesApi/resources/latest/Activity';
 const https = require('https');
 
 
@@ -21,13 +21,13 @@ app.post('/inputmsg',function(request,response){
 	console.log('Req : '+ request.body.result.parameters.any);
 	
 	//Importing Data from OSC
-	//console.log(" RecordName :" + request.body.RecordName);
+	//console.log(" RecordName :" + request.body.RecordName); // recordname?
     var recordNameURL = (request.body.result.parameters.any).trim().replace( / /g, "%20" );
     console.log("recordNameURL :" + recordNameURL)
 	var options = {
 		host: varHost,
 		port: 443,
-		path: varPath + "/?q=RecordName=" + recordNameURL, 
+		path: varPath + "/" + recordNameURL, 
 		headers: {
 		'Authorization': varAuth,
 		'Content-Type': 'application/vnd.oracle.adf.resourceitem+json'
@@ -52,41 +52,29 @@ app.post('/inputmsg',function(request,response){
 		if(request.body.result.parameters.attribute){
 			var answer = responseObject.items[0][request.body.result.parameters.attribute];
 			console.log(" Value : " + answer);
-			if(request.body.result.parameters.attribute=="AssignedTo_SA2_c")
+			if(request.body.result.parameters.attribute=="ActivityNumber")
 			{
-				var speech = "The task "+recordNameURL+" is assigned to "+ answer+".";
+				var speech = "The activity number of "+recordNameURL+" is "+ answer+".";
 			}
-			else if(request.body.result.parameters.attribute=="Status_SA_c")
+			else if(request.body.result.parameters.attribute=="ActivityId")
 			{
-				var speech = "The status of "+recordNameURL+" is "+ answer+".";
+				var speech = "The Activity Id of "+recordNameURL+" is "+ answer+".";
 			}
-			else if(request.body.result.parameters.attribute=="Type_c")
+			else if(request.body.result.parameters.attribute=="ActivityCreatedBy")
 			{
-				var speech = "The type of "+recordNameURL+" is "+ answer+".";
+				var speech = "The Activity of "+recordNameURL+" is Created By "+ answer+".";
 			}
 			else if(request.body.result.parameters.attribute=="Id")
 			{
 				var speech = "The Id of "+recordNameURL+" is "+ answer+".";
 			}
-			else if(request.body.result.parameters.attribute=="CreatedBy")
+			else if(request.body.result.parameters.attribute=="Subject")
 			{
-				var speech = "This "+recordNameURL+" is  created by "+ answer+".";
-			}
-			else if(request.body.result.parameters.attribute=="EmailAddress_c")
-			{
-				var speech = answer+" is associated to "+recordNameURL;
+				var speech = "The subject of "+recordNameURL+" is "+ answer+".";
 			}
 			else if(request.body.result.parameters.attribute=="CreationDate")
 			{
-				var speech = recordNameURL+" was created on "+answer;
-			}
-			else if(request.body.result.parameters.attribute=="LastUpdateDate")
-			{
-				var speech = recordNameURL+" was last updated on "+answer;
-			}
-			else if(request.body.result.parameters.attribute=="LastUpdatedBy")
-			{
-				var speech = recordNameURL+" was recently updated by "+answer;
+				var speech = answer+" is Creation Date of "+recordNameURL;
 			}
 			else
 			{
